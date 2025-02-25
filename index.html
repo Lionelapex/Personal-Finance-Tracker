@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Personal Finance Tracker</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body class="bg-gray-100">
+    <div class="container mx-auto px-4 py-8">
+        <!-- Header -->
+        <header class="text-center mb-8">
+            <h1 class="text-3xl font-bold text-gray-800">Personal Finance Tracker</h1>
+        </header>
+
+        <!-- Main Content -->
+        <main class="grid grid-cols-1 md:grid-cols-2 gap-6">
+            <!-- Income Section -->
+            <section class="bg-white p-6 rounded-lg shadow">
+                <h2 class="text-xl font-semibold mb-4">Income</h2>
+                <form id="incomeForm">
+                    <div class="mb-4">
+                        <label class="block text-gray-700 mb-2" for="salary">Monthly Salary</label>
+                        <input type="number" id="salary" class="w-full p-2 border rounded" required>
+                    </div>
+                    <button type="submit" class="bg-blue-500 text-white px-4 py-2 rounded hover:bg-blue-600">
+                        Update Income
+                    </button>
+                </form>
+            </section>
+
+            <!-- Savings Goals Section -->
+            <section class="bg-white p-6 rounded-lg shadow">
+                <h2 class="text-xl font-semibold mb-4">Savings Goals</h2>
+                <form id="savingsGoalForm">
+                    <div class="mb-4">
+                        <label class="block text-gray-700 mb-2" for="goalName">Goal Name</label>
+                        <input type="text" id="goalName" class="w-full p-2 border rounded" required>
+                    </div>
+                    <div class="mb-4">
+                        <label class="block text-gray-700 mb-2" for="targetAmount">Target Amount</label>
+                        <input type="number" id="targetAmount" class="w-full p-2 border rounded" required>
+                    </div>
+                    <div class="mb-4">
+                        <label class="block text-gray-700 mb-2" for="duration">Duration (months)</label>
+                        <input type="number" id="duration" class="w-full p-2 border rounded" required>
+                    </div>
+                    <button type="submit" class="bg-green-500 text-white px-4 py-2 rounded hover:bg-green-600">
+                        Add Savings Goal
+                    </button>
+                </form>
+            </section>
+
+            <!-- Expenses Section -->
+            <section class="bg-white p-6 rounded-lg shadow">
+                <h2 class="text-xl font-semibold mb-4">Expenses</h2>
+                <form id="expenseForm">
+                    <div class="mb-4">
+                        <label class="block text-gray-700 mb-2" for="expenseCategory">Category</label>
+                        <select id="expenseCategory" class="w-full p-2 border rounded" required>
+                            <option value="food">Food</option>
+                            <option value="rent">Rent</option>
+                            <option value="utilities">Utilities</option>
+                            <option value="transportation">Transportation</option>
+                            <option value="entertainment">Entertainment</option>
+                        </select>
+                    </div>
+                    <div class="mb-4">
+                        <label class="block text-gray-700 mb-2" for="expenseAmount">Amount</label>
+                        <input type="number" id="expenseAmount" class="w-full p-2 border rounded" required>
+                    </div>
+                    <div class="mb-4">
+                        <label class="block text-gray-700 mb-2" for="expenseDate">Date</label>
+                        <input type="date" id="expenseDate" class="w-full p-2 border rounded" required>
+                    </div>
+                    <button type="submit" class="bg-purple-500 text-white px-4 py-2 rounded hover:bg-purple-600">
+                        Add Expense
+                    </button>
+                </form>
+            </section>
+
+            <!-- Summary Section -->
+            <section class="bg-white p-6 rounded-lg shadow">
+                <h2 class="text-xl font-semibold mb-4">Financial Summary</h2>
+                <div class="space-y-4">
+                    <div class="flex justify-between">
+                        <span class="text-gray-700">Total Income:</span>
+                        <span id="totalIncome" class="font-semibold">$0.00</span>
+                    </div>
+                    <div class="flex justify-between">
+                        <span class="text-gray-700">Total Expenses:</span>
+                        <span id="totalExpenses" class="font-semibold">$0.00</span>
+                    </div>
+                    <div class="flex justify-between">
+                        <span class="text-gray-700">Remaining Balance:</span>
+                        <span id="remainingBalance" class="font-semibold">$0.00</span>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Savings Goals List -->
+            <section class="bg-white p-6 rounded-lg shadow col-span-1 md:col-span-2">
+                <h2 class="text-xl font-semibold mb-4">Active Savings Goals</h2>
+                <div id="savingsGoalsList" class="space-y-4">
+                    <!-- Goals will be inserted here -->
+                </div>
+                
+                <!-- Contribution Modal -->
+                <div id="contributionModal" class="hidden fixed inset-0 bg-gray-600 bg-opacity-50 overflow-y-auto h-full w-full">
+                    <div class="relative top-20 mx-auto p-5 border w-96 shadow-lg rounded-md bg-white">
+                        <h3 class="text-lg font-semibold mb-4">Add Contribution</h3>
+                        <form id="contributionForm">
+                            <input type="hidden" id="contributionGoalId">
+                            <div class="mb-4">
+                                <label class="block text-gray-700 mb-2" for="contributionAmount">Amount</label>
+                                <input type="number" id="contributionAmount" class="w-full p-2 border rounded" required>
+                            </div>
+                            <div class="flex justify-end space-x-2">
+                                <button type="button" onclick="closeContributionModal()" 
+                                        class="px-4 py-2 bg-gray-300 text-gray-700 rounded hover:bg-gray-400">
+                                    Cancel
+                                </button>
+                                <button type="submit" 
+                                        class="px-4 py-2 bg-blue-500 text-white rounded hover:bg-blue-600">
+                                    Add
+                                </button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Expenses List -->
+            <section class="bg-white p-6 rounded-lg shadow col-span-1 md:col-span-2">
+                <h2 class="text-xl font-semibold mb-4">Recent Expenses</h2>
+                <div id="expensesList" class="space-y-4">
+                    <!-- Expenses will be inserted here -->
+                </div>
+            </section>
+        </main>
+    </div>
+
+    <script src="app.js"></script>
+</body>
+</html>

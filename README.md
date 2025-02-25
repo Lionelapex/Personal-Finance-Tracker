@@ -66,10 +66,6 @@ The Financial Summary section shows:
 - JavaScript (ES6+)
 - [Tailwind CSS](https://tailwindcss.com/) - For styling
 
-## Project Structure
-personal-finance-tracker/
-├── index.html # Main HTML file
-├── app.js # JavaScript logic
 
 
 ## Contributing

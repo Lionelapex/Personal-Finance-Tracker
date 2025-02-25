@@ -3,7 +3,7 @@
 
 A web-based personal finance management application that helps users track income, expenses, and savings goals.
 
-![Personal Finance Tracker Screenshot](screenshot.png)
+
 
 ## Features
 
@@ -29,7 +29,7 @@ A web-based personal finance management application that helps users track incom
 
 1. Clone the repository
 
-git clone https://github.com/yourusername/personal-finance-tracker.git
+git clone https://github.com/lionelapex/personal-finance-tracker.git
 
 Navigate to the project directory
 cd personal-finance-tracker
